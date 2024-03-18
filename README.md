@@ -94,7 +94,7 @@ python src/vector_search.py --database ~/.lancedb --table_name myntra_v3 --schem
 2. Image Search Example:  
 In this case pass the image path in the search query.
 ```
-python src/vector_search.py --database ~/.lancedb --table_name myntra_v3 --schema "Myntra" --search_query input/Images/0.jpg --output_folder "output"
+python src/vector_search.py --database ~/.lancedb --table_name myntra_v3 --schema "Myntra" --search_query "input/Images/0.jpg" --output_folder "output"
 ```
 
 ## License

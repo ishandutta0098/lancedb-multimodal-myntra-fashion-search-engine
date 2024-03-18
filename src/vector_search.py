@@ -1,6 +1,7 @@
 import argparse
 import os
 from typing import Any
+from PIL import Image
 
 import lancedb
 
@@ -18,8 +19,8 @@ def run_vector_search(
     """
     This function performs a vector search on the specified database and table using the provided search query.
     The search can be performed on either text or image data. The function retrieves the top 'limit' number of results
-    and saves the corresponding images in the 'output_folder' directory.
-
+    and saves the corresponding images in the 'output_folder' directory. The function assumes if the search query ends 
+    with '.jpg' or '.png', it is an image search, otherwise it is a text search.
     Args:
         database (str): The path to the database.
         table_name (str): The name of the table.
@@ -48,6 +49,18 @@ def run_vector_search(
 
     # Open the table
     table = db.open_table(table_name)
+
+    # Check if the search query is an image or text
+    try:
+        if search_query.endswith(".jpg") or search_query.endswith(".png"):
+            search_query = Image.open(search_query)
+        else:
+            search_query = search_query
+    except AttributeError as e:
+        if str(e) == "'JpegImageFile' object has no attribute 'endswith'":
+            print("Running via Streamlit, search query is already an array so skipping opening image using Pillow")
+        else:
+            raise
 
     # Perform the vector search and retrieve the results
     rs = table.search(search_query).limit(limit).to_pydantic(schema)
