@@ -63,4 +63,4 @@ if __name__ == '__main__':
     if schema is None:
         raise ValueError(f"Unknown schema: {args.schema}")
 
-    run_vector_search(args.database, args.table_name, args.schema, args.search_query, args.limit, args.output_folder)
+    run_vector_search(args.database, args.table_name, schema, args.search_query, args.limit, args.output_folder)
