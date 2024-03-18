@@ -1,4 +1,7 @@
 input
-.vscode
-__pycache__
 output
+
+.vscode
+.DS_Store
+
+__pycache__
