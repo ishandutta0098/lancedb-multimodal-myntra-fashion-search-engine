@@ -55,11 +55,11 @@ conda activate lance-env
 ```
 
 3. Download the dataset from Kaggle and store it in the input folder.
-- [Myntra Fashion Product Dataset](https://www.kaggle.com/datasets/hiteshsuthar101/myntra-fashion-product-dataset)
-This is how the `input` directory should look like:    
+- [Myntra Fashion Product Dataset](https://www.kaggle.com/datasets/hiteshsuthar101/myntra-fashion-product-dataset)  
+This is how the `input` directory should look like:      
 ```
 input
-    |-images
+    |-Images
     |   |-0.jpg
     |   |-2.jpg
     |   ..
@@ -69,13 +69,33 @@ input
 
 4. Run the Streamlit app:
 ```
-streamlit run app.py
+streamlit run src/app.py
 ```
 
 
 ### Usage
 
 Follow the on-screen instructions on the Streamlit app to perform searches. You can search using text queries or by uploading an image to find similar fashion items.
+
+### Terminal Based Search
+You can also run the vector search by calling the script `src/vector_seqarch.py` instead of running the streamlit app. Here are the commands for text and image search. 
+
+
+#### Syntax
+```
+python src/vector_search.py --database <database_name> --table_name <table> --schema <schema_name> --search_query <query> --output_folder <output folder>  
+```
+  
+1. Text Search Example:  
+```
+python src/vector_search.py --database ~/.lancedb --table_name myntra_v3 --schema "Myntra" --search_query "White Kurta" --output_folder "output"            
+```
+
+2. Image Search Example:  
+In this case pass the image path in the search query.
+```
+python src/vector_search.py --database ~/.lancedb --table_name myntra_v3 --schema "Myntra" --search_query input/Images/0.jpg --output_folder "output"
+```
 
 ## License
 
