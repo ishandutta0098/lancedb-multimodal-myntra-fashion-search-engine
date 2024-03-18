@@ -6,19 +6,22 @@ from vector_search import run_vector_search
 from schema import Myntra
 
 def main(args):
+    # Define the title and sidebar options
     st.sidebar.title('Vector Search')
     table_name = st.sidebar.text_input('Name of the table', args.table_name)
     search_query = st.sidebar.text_input('Search query', args.search_query)
     limit = st.sidebar.slider('Limit the number of results', args.limit_min, args.limit_max, args.limit_default)
     output_folder = st.sidebar.text_input('Output folder path', args.output_folder)
 
-    # Upload image
+    # Image Based Search
+    # Add an option for uploading an image for query
     uploaded_image = st.sidebar.file_uploader('Upload an image')
     if uploaded_image is not None:
         image = Image.open(uploaded_image)
         st.sidebar.image(image, caption='Uploaded Image', use_column_width=True)
         search_query = image  # Set the search query as the uploaded image
 
+    # Run the vector search when the button is clicked
     if st.sidebar.button('Run Vector Search'):
         run_vector_search("~/.lancedb", table_name, Myntra, search_query, limit, output_folder)
 
@@ -38,7 +41,7 @@ def main(args):
             image = Image.open(image_path)
             st.image(image, caption=image_file, use_column_width=True)
 
-            # Navigation buttons
+            # Navigation buttons for previous and next images
             col1, col2 = st.columns(2)
             with col1:
                 if st.button('Previous'):

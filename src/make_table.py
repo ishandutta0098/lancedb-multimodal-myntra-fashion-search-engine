@@ -5,8 +5,25 @@ from random import sample
 import argparse
 
 from schema import Myntra
+from typing import Optional, Any
 
-def create_table(database, table_name, data_path, schema=Myntra, mode="overwrite"):
+def create_table(database: str, table_name: str, data_path: str, schema: Any = Myntra, mode: str = "overwrite") -> None:
+    """
+    Create a table in the specified vector database and add data to it.
+
+    Args:
+        database (str): The name of the database to connect to.
+        table_name (str): The name of the table to create.
+        data_path (str): The path to the data directory.
+        schema (Schema, optional): The schema to use for the table. Defaults to Myntra.
+        mode (str, optional): The mode for creating the table. Defaults to "overwrite".
+
+    Returns:
+        None
+
+    Usage:
+    >>> create_table(database="~/.lancedb"", table_name="myntra", data_path="input")
+    """
 
     # Connect to the lancedb database
     db = lancedb.connect(database)
@@ -30,6 +47,8 @@ def create_table(database, table_name, data_path, schema=Myntra, mode="overwrite
         print(f"Found {len(uris)} images in {p}")
         
         # Sample 1000 images from the data 
+        # Increase this value for more accurate results but 
+        # it will take more time to process embeddings
         uris = sample(uris, 1000)
 
         # Add the data to the table

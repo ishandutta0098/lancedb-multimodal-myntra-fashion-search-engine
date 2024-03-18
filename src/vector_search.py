@@ -1,20 +1,49 @@
 import lancedb
 import argparse
+from typing import Any
 
 from schema import Myntra, get_schema_by_name
 import os
 
-def run_vector_search(database, table_name, schema, search_query, limit=6, output_folder="output"):
+def run_vector_search(database: str, table_name: str, schema: Any, search_query: Any, limit: int = 6, output_folder: str = "output") -> None:
+    """
+    This function performs a vector search on the specified database and table using the provided search query.
+    The search can be performed on either text or image data. The function retrieves the top 'limit' number of results
+    and saves the corresponding images in the 'output_folder' directory.
+
+    Args:
+        database (str): The path to the database.
+        table_name (str): The name of the table.
+        schema (Schema): The schema to use for converting search results to Pydantic models.
+        search_query (Any): The search query, can be text or image.
+        limit (int, optional): The maximum number of results to return. Defaults to 6.
+        output_folder (str, optional): The folder to save the output images. Defaults to "output".
+
+    Returns:
+        None
+
+    Usage:
+    >>> run_vector_search(database="~/.lancedb", table_name="myntra", schema=Myntra, search_query="Black Kurta")
+
+    """
+
+    # Create the output folder if it does not exist
     if os.path.exists(output_folder):
         for file in os.listdir(output_folder):
             os.remove(os.path.join(output_folder, file))
     else:
         os.makedirs(output_folder)
 
+    # Connect to the lancedb database
     db = lancedb.connect(database)
+
+    # Open the table
     table = db.open_table(table_name)
+
+    # Perform the vector search and retrieve the results
     rs = table.search(search_query).limit(limit).to_pydantic(schema)
     
+    # Save the images to the output folder
     for i in range(limit):
         image_path = os.path.join(output_folder, f"image_{i}.jpg")
         rs[i].image.save(image_path, "JPEG")
