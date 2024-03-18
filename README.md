@@ -34,7 +34,7 @@ Ensure you have the following installed:
 - Python 3.8+
 - LanceDB
 - Streamlit
-- PIL (Python Imaging Library)
+- open-clip-torch
 
 ### Installation
 
@@ -43,10 +43,15 @@ Ensure you have the following installed:
 git clone https://github.com/ishandutta0098/lancedb-multimodal-myntra-fashion-search-engine.git
 ```
   
-2. Navigate to the project directory and install the required dependencies:
+2. Navigate to the project directory and install the required dependencies using the `environment.yml` file:
 ```
 cd lancedb-multimodal-myntra-fashion-search-engine
-pip install -r requirements.txt
+
+# Create the conda environment
+conda env create -f environment.yml
+
+# Activate the environment
+conda activate lance-env
 ```
 
 3. Download the dataset from Kaggle and store it in the input folder.
