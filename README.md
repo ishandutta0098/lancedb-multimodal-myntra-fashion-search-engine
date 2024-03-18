@@ -1,4 +1,4 @@
-# Myntra Fashion Search Engine with LanceDB Vector Database
+# Multimodal Myntra Fashion Search Engine with LanceDB Vector Database
 
 Welcome to the GitHub repository for the Myntra Fashion Search Engine, a cutting-edge solution leveraging the power of [LanceDB](https://lancedb.com/) Vector Database to enable efficient and intuitive fashion searches. This project demonstrates the simplicity and effectiveness of using vector embeddings, specifically with OpenAI's CLIP model, to create a multimodal search engine capable of understanding and processing both text and image queries.
 
@@ -40,16 +40,29 @@ Ensure you have the following installed:
 
 1. Clone the repository:
 ```
-git clone https://github.com/ishandutta0098/lancedb-myntra-fashion-engine-search.git
+git clone https://github.com/ishandutta0098/lancedb-multimodal-myntra-fashion-search-engine.git
 ```
   
 2. Navigate to the project directory and install the required dependencies:
 ```
-cd lancedb-myntra-fashion-engine-search
+cd lancedb-multimodal-myntra-fashion-search-engine
 pip install -r requirements.txt
 ```
 
-3. Run the Streamlit app:
+3. Download the dataset from Kaggle and store it in the input folder.
+- [Myntra Fashion Product Dataset](https://www.kaggle.com/datasets/hiteshsuthar101/myntra-fashion-product-dataset)
+This is how the `input` directory should look like:    
+```
+input
+    |-images
+    |   |-0.jpg
+    |   |-2.jpg
+    |   ..
+    |   ..
+    |- Fashion Dataset.csv
+```
+
+4. Run the Streamlit app:
 ```
 streamlit run app.py
 ```
