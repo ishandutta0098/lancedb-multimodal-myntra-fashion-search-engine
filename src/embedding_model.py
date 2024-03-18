@@ -1,5 +1,7 @@
-from lancedb.embeddings import EmbeddingFunctionRegistry
 from typing import Any
+
+from lancedb.embeddings import EmbeddingFunctionRegistry
+
 
 def register_model(model_name: str) -> Any:
     """

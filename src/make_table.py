@@ -1,13 +1,21 @@
-import lancedb
-import pandas as pd
+import argparse
 from pathlib import Path
 from random import sample
-import argparse
+from typing import Any, Optional
+
+import lancedb
+import pandas as pd
 
 from schema import Myntra
-from typing import Optional, Any
 
-def create_table(database: str, table_name: str, data_path: str, schema: Any = Myntra, mode: str = "overwrite") -> None:
+
+def create_table(
+    database: str,
+    table_name: str,
+    data_path: str,
+    schema: Any = Myntra,
+    mode: str = "overwrite",
+) -> None:
     """
     Create a table in the specified vector database and add data to it.
 
@@ -34,7 +42,7 @@ def create_table(database: str, table_name: str, data_path: str, schema: Any = M
         table = db[table_name]
 
     # if it does not exist then create a new table
-    else:   
+    else:
 
         print(f"Creating table {table_name} in the database")
 
@@ -45,9 +53,9 @@ def create_table(database: str, table_name: str, data_path: str, schema: Any = M
         p = Path(data_path).expanduser()
         uris = [str(f) for f in p.glob("*.jpg")]
         print(f"Found {len(uris)} images in {p}")
-        
-        # Sample 1000 images from the data 
-        # Increase this value for more accurate results but 
+
+        # Sample 1000 images from the data
+        # Increase this value for more accurate results but
         # it will take more time to process embeddings
         uris = sample(uris, 1000)
 
@@ -55,12 +63,21 @@ def create_table(database: str, table_name: str, data_path: str, schema: Any = M
         print(f"Adding {len(uris)} images to the table")
         table.add(pd.DataFrame({"image_uri": uris}))
         print(f"Added {len(uris)} images to the table")
-    
+
+
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description='Create a table in lancedb with Myntra data')
-    parser.add_argument('database', help='Path to the lancedb database', default='path/to/database')
-    parser.add_argument('table_name', help='Name of the table to be created', default='my_table')
-    parser.add_argument('data_path', help='Path to the Myntra data images', default='path/to/data')
+    parser = argparse.ArgumentParser(
+        description="Create a table in lancedb with Myntra data"
+    )
+    parser.add_argument(
+        "database", help="Path to the lancedb database", default="path/to/database"
+    )
+    parser.add_argument(
+        "table_name", help="Name of the table to be created", default="my_table"
+    )
+    parser.add_argument(
+        "data_path", help="Path to the Myntra data images", default="path/to/data"
+    )
     args = parser.parse_args()
 
     create_table(args.database, args.table_name, args.data_path)

@@ -1,11 +1,20 @@
-import lancedb
 import argparse
+import os
 from typing import Any
 
-from schema import Myntra, get_schema_by_name
-import os
+import lancedb
 
-def run_vector_search(database: str, table_name: str, schema: Any, search_query: Any, limit: int = 6, output_folder: str = "output") -> None:
+from schema import Myntra, get_schema_by_name
+
+
+def run_vector_search(
+    database: str,
+    table_name: str,
+    schema: Any,
+    search_query: Any,
+    limit: int = 6,
+    output_folder: str = "output",
+) -> None:
     """
     This function performs a vector search on the specified database and table using the provided search query.
     The search can be performed on either text or image data. The function retrieves the top 'limit' number of results
@@ -42,20 +51,27 @@ def run_vector_search(database: str, table_name: str, schema: Any, search_query:
 
     # Perform the vector search and retrieve the results
     rs = table.search(search_query).limit(limit).to_pydantic(schema)
-    
+
     # Save the images to the output folder
     for i in range(limit):
         image_path = os.path.join(output_folder, f"image_{i}.jpg")
         rs[i].image.save(image_path, "JPEG")
 
-if __name__ == '__main__':
-    parser = argparse.ArgumentParser(description='Vector Search')
-    parser.add_argument('--database', type=str, help='Path to the database')
-    parser.add_argument('--table_name', type=str, help='Name of the table')
-    parser.add_argument('--schema', type=str, help='Schema of the table', default="Myntra")
-    parser.add_argument('--search_query', type=str, help='Search query')
-    parser.add_argument('--limit', type=int, default=6, help='Limit the number of results (default: 6)')
-    parser.add_argument('--output_folder', type=str, default="output", help='Output folder path')
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description="Vector Search")
+    parser.add_argument("--database", type=str, help="Path to the database")
+    parser.add_argument("--table_name", type=str, help="Name of the table")
+    parser.add_argument(
+        "--schema", type=str, help="Schema of the table", default="Myntra"
+    )
+    parser.add_argument("--search_query", type=str, help="Search query")
+    parser.add_argument(
+        "--limit", type=int, default=6, help="Limit the number of results (default: 6)"
+    )
+    parser.add_argument(
+        "--output_folder", type=str, default="output", help="Output folder path"
+    )
 
     args = parser.parse_args()
 
@@ -63,4 +79,11 @@ if __name__ == '__main__':
     if schema is None:
         raise ValueError(f"Unknown schema: {args.schema}")
 
-    run_vector_search(args.database, args.table_name, schema, args.search_query, args.limit, args.output_folder)
+    run_vector_search(
+        args.database,
+        args.table_name,
+        schema,
+        args.search_query,
+        args.limit,
+        args.output_folder,
+    )

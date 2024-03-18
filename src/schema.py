@@ -1,10 +1,13 @@
-from PIL import Image
-from lancedb.pydantic import LanceModel, Vector
-from embedding_model import register_model
 from typing import Any
+
+from lancedb.pydantic import LanceModel, Vector
+from PIL import Image
+
+from embedding_model import register_model
 
 # Register the OpenAI CLIP model
 clip = register_model("open-clip")
+
 
 class Myntra(LanceModel):
     """
@@ -21,6 +24,7 @@ class Myntra(LanceModel):
     @property
     def image(self):
         return Image.open(self.image_uri)
+
 
 # Function to map schema name to schema class
 def get_schema_by_name(schema_name: str) -> Any:
