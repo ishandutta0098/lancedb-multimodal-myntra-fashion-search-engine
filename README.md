@@ -6,6 +6,10 @@ Welcome to the GitHub repository for the Myntra Fashion Search Engine, a cutting
 
 https://github.com/ishandutta0098/lancedb-multimodal-myntra-fashion-search-engine/assets/47643789/193ddfa7-1a50-461f-90a4-438c1724a05b
 
+
+## Colab Notebook
+- You can try out the project directly on colab as well - [notebook](https://colab.research.google.com/drive/1qnaNasUy6aJOcaUYw9lMX_s4SWWGq3jY?usp=sharing)
+  
 ## Overview
 
 The Myntra Fashion Search Engine is designed to simplify the process of finding fashion items by using LanceDB vector database. By converting images into searchable embeddings and integrating a user-friendly interface with Streamlit, this project showcases a seamless approach to building sophisticated search functionalities for fashion e-commerce platforms.
