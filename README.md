@@ -103,13 +103,13 @@ python src/vector_search.py --database <database_name> --table_name <table> --sc
   
 1. Text Search Example:  
 ```
-python src/vector_search.py --database ~/.lancedb --table_name myntra_v3 --schema "Myntra" --search_query "White Kurta" --output_folder "output"            
+python src/vector_search.py --database ~/.lancedb --table_name myntra --schema "Myntra" --search_query "White Kurta" --output_folder "output"            
 ```
 
 2. Image Search Example:  
 In this case pass the image path in the search query.
 ```
-python src/vector_search.py --database ~/.lancedb --table_name myntra_v3 --schema "Myntra" --search_query "input/Images/0.jpg" --output_folder "output"
+python src/vector_search.py --database ~/.lancedb --table_name myntra --schema "Myntra" --search_query "input/Images/0.jpg" --output_folder "output"
 ```
 
 ## License
