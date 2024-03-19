@@ -88,7 +88,7 @@ if __name__ == "__main__":
     parser.add_argument(
         "--limit_default",
         type=int,
-        default=6,
+        default=3,
         help="Default limit for number of results",
     )
     parser.add_argument(
