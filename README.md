@@ -67,7 +67,15 @@ input
     |- Fashion Dataset.csv
 ```
 
-4. Run the Streamlit app:
+4. Create the Table:  
+Pass the name of the database, name of the table and directory of the images in your dataset to create a table. 
+
+```
+python src/make_table.py --database "~/.lancedb" --table_name "myntra" --data_path "input/Images" 
+```
+
+
+5. Run the Streamlit app:
 ```
 streamlit run src/app.py
 ```
