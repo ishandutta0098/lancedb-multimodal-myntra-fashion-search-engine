@@ -93,7 +93,7 @@ streamlit run src/app.py --table_name myntra
 Follow the on-screen instructions on the Streamlit app to perform searches. You can search using text queries or by uploading an image to find similar fashion items.
 
 ### Terminal Based Search
-You can also run the vector search by calling the script `src/vector_seqarch.py` instead of running the streamlit app. Here are the commands for text and image search. 
+You can also run the vector search by calling the script `src/vector_search.py` instead of running the streamlit app. Here are the commands for text and image search. 
 
 
 #### Syntax
