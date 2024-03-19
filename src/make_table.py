@@ -70,13 +70,13 @@ if __name__ == "__main__":
         description="Create a table in lancedb with Myntra data"
     )
     parser.add_argument(
-        "database", help="Path to the lancedb database", default="path/to/database"
+        "--database", help="Path to the lancedb database", default="path/to/database"
     )
     parser.add_argument(
-        "table_name", help="Name of the table to be created", default="my_table"
+        "--table_name", help="Name of the table to be created", default="my_table"
     )
     parser.add_argument(
-        "data_path", help="Path to the Myntra data images", default="path/to/data"
+        "--data_path", help="Path to the Myntra data images", default="path/to/data"
     )
     args = parser.parse_args()
 
