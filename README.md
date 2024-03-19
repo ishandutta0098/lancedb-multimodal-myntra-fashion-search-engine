@@ -2,10 +2,9 @@
 
 Welcome to the GitHub repository for the Myntra Fashion Search Engine, a cutting-edge solution leveraging the power of [LanceDB](https://lancedb.com/) Vector Database to enable efficient and intuitive fashion searches. This project demonstrates the simplicity and effectiveness of using vector embeddings, specifically with OpenAI's CLIP model, to create a multimodal search engine capable of understanding and processing both text and image queries.
 
-<video src="assets/lancedb_myntra_demo.mp4" width="320" height="240" controls>
-  Your browser does not support the video tag.
-</video>
+## Project Demo Video
 
+https://github.com/ishandutta0098/lancedb-multimodal-myntra-fashion-search-engine/assets/47643789/193ddfa7-1a50-461f-90a4-438c1724a05b
 
 ## Overview
 
