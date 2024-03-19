@@ -79,7 +79,7 @@ python src/make_table.py --database "~/.lancedb" --table_name "myntra" --data_pa
 There are a number of arguments you can pass to the app. Here is the most basic run command. 
   
 ```
-streamlit run src/app.py --table_name myntra
+streamlit run src/app.py -- --table_name myntra
 ```
   
 **Other options** - 
@@ -88,6 +88,9 @@ streamlit run src/app.py --table_name myntra
 - `--limit_max`: Maximum limit for number of results
 - `--limit_default`: Default limit for number of results
 
+**Note:**  
+To ensure the arguments get accepted by streamlit as script arguments, you need to add an additional `--` as a separator as shown above.
+  
 ### Usage
 
 Follow the on-screen instructions on the Streamlit app to perform searches. You can search using text queries or by uploading an image to find similar fashion items.
