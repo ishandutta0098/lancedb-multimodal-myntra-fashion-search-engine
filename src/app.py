@@ -74,7 +74,7 @@ def main(args):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Vector Search")
     parser.add_argument(
-        "--table_name", type=str, default="myntra_v3", help="Name of the table"
+        "--table_name", type=str, default="myntra", help="Name of the table"
     )
     parser.add_argument(
         "--search_query", type=str, default="kurta", help="Search query"
