@@ -7,8 +7,10 @@ Welcome to the GitHub repository for the Myntra Fashion Search Engine, a cutting
 https://github.com/ishandutta0098/lancedb-multimodal-myntra-fashion-search-engine/assets/47643789/193ddfa7-1a50-461f-90a4-438c1724a05b
 
 
-## Colab Notebook
-- You can try out the project directly on colab as well - [notebook](https://colab.research.google.com/drive/1qnaNasUy6aJOcaUYw9lMX_s4SWWGq3jY?usp=sharing)
+## Resources
+- [Blog](https://blog.lancedb.com/multimodal-myntra-fashion-search-engine-using-lancedb/)
+- [Lightning Studio](https://lightning.ai/ishandutta0098/studios/multimodal-myntra-fashion-search-engine-with-lancedb)
+- [Colab Notebook](https://colab.research.google.com/drive/1qnaNasUy6aJOcaUYw9lMX_s4SWWGq3jY?usp=sharing)
   
 ## Overview
 
