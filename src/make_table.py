@@ -1,7 +1,7 @@
 import argparse
 from pathlib import Path
 from random import sample
-from typing import Any, Optional
+from typing import Any
 
 import lancedb
 import pandas as pd
@@ -15,6 +15,7 @@ def create_table(
     data_path: str,
     schema: Any = Myntra,
     mode: str = "overwrite",
+    num_samples: int = 1000,
 ) -> None:
     """
     Create a table in the specified vector database and add data to it.
@@ -25,6 +26,7 @@ def create_table(
         data_path (str): The path to the data directory.
         schema (Schema, optional): The schema to use for the table. Defaults to Myntra.
         mode (str, optional): The mode for creating the table. Defaults to "overwrite".
+        num_samples(int, optional): The number of Image samples to be added to the database.
 
     Returns:
         None
@@ -54,10 +56,10 @@ def create_table(
         uris = [str(f) for f in p.glob("*.jpg")]
         print(f"Found {len(uris)} images in {p}")
 
-        # Sample 1000 images from the data
+        # Sample 1000 images from the data by default
         # Increase this value for more accurate results but
         # it will take more time to process embeddings
-        uris = sample(uris, 1000)
+        uris = sample(uris, num_samples)
 
         # Add the data to the table
         print(f"Adding {len(uris)} images to the table")
@@ -78,6 +80,29 @@ if __name__ == "__main__":
     parser.add_argument(
         "--data_path", help="Path to the Myntra data images", default="path/to/data"
     )
+    parser.add_argument(
+        "--schema",
+        help="Schema to use for the table. Defaults to Myntra",
+        default=Myntra,
+    )
+    parser.add_argument(
+        "--mode",
+        help="Mode for creating the table. Defaults to 'overwrite'",
+        default="overwrite",
+    )
+    parser.add_argument(
+        "--num_samples",
+        help="Number of Image samples to be added to the table",
+        type=int,
+        default=1000,
+    )
     args = parser.parse_args()
 
-    create_table(args.database, args.table_name, args.data_path)
+    create_table(
+        args.database,
+        args.table_name,
+        args.data_path,
+        args.schema,
+        args.mode,
+        args.num_samples,
+    )
